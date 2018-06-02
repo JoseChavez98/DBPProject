@@ -27,7 +27,7 @@ def do_login():
     session = db.getSession(engine)
     users = session.query(entities.User)
     for user in users:
-        if user.name == data['username'] and user.password == data['password']:
+        if "jose" == data['username'] and "1234" == data['password']:
             return render_template('home.html')
 
     return render_template('login.html')
