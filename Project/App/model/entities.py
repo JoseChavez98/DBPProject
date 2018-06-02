@@ -10,3 +10,7 @@ class User(connector.Manager.Base):
 
 
 
+class Images(connector.Manager.Base):
+    __tablename__='images'
+    id = Column(Integer, primary_key=True)
+    direccion = Column(String(60))
