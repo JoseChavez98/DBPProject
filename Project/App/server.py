@@ -4,13 +4,13 @@ from database import connector
 import json
 
 
-
-
 app = Flask(__name__)
 db = connector.Manager()
 
 cache = {}
 engine = db.createEngine()
+
+
 @app.route('/static/<content>')
 def static_content(content):
     return render_template(content)
@@ -27,7 +27,10 @@ def do_login():
     session = db.getSession(engine)
     users = session.query(entities.User)
     for user in users:
-        if "jose" == data['username'] and "1234" == data['password']:
+        print('\n')
+        print(user.name)
+
+        if "a" == data['username'] and "a" == data['password']:
             return render_template('home.html')
 
     return render_template('login.html')
