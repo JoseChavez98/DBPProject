@@ -11,9 +11,13 @@ cache = {}
 engine = db.createEngine()
 
 
-@app.route('/static/<content>')
-def static_content(content):
+@app.route('/images/<content>')
+def images(content):
     return render_template(content)
+
+#@app.route('/static/<content>')
+#def static_content(content):
+#    return render_template(content)
 
 
 @app.route('/')
@@ -30,7 +34,7 @@ def do_login():
         print('\n')
         print(user.name)
 
-        if "a" == data['username'] and "a" == data['password']:
+        if user.name == data['username'] and user.password == data['password']:
             return render_template('home.html')
 
     return render_template('login.html')
