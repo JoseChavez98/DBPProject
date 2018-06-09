@@ -13,37 +13,28 @@ db = connector.Manager()
 UPLOAD_FOLDER = '/static'
 ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg', 'gif'])
 
-#photos = UploadSet('photos', IMAGES)
 app.config['UPLOADED_FOLDER'] = 'static/'
-#configure_uploads(app, photos)
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 cache = {}
 engine = db.createEngine()
 
-@app.route('/show',methods=['POST'])
-def show():
-    return render_template('upload.html')
-@app.route('/upload', methods=['GET','POST'])
-
-def upload_file():
-
-    file = request.files['image']
-    f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
-    file.save(f)
-    print("subida exitosa")
-
-    return render_template('upload.html')
-
-
-
-
+##############################################################################
+##################### LOGS ##################################################
+#############################################################################
 
 @app.route('/')
 def hello_world():
     return render_template('home.html')
+
+@app.route('/logout',methods=['POST'])
+def log_out():
+    return render_template('login.html')
+
+##############################################################################
+################# USERS ######################################################
+##############################################################################
+
 
 @app.route('/dologin',  methods = ['POST'])
 def do_login():
@@ -129,6 +120,7 @@ def create_user():
     session.add(user)
     session.commit()
     return 'Created users'
+
 @app.route('/users', methods = ['PUT'])
 def update_user():
     session = db.getSession(engine)
@@ -140,6 +132,31 @@ def update_user():
     session.add(user)
     session.commit()
     return ('Updated User')
+
+
+
+
+##############################################################################
+################## UPLOAD IMAGES #############################################
+#############################################################################
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+@app.route('/show',methods=['POST'])
+def show():
+    return render_template('upload.html')
+@app.route('/upload', methods=['GET','POST'])
+
+def upload_file():
+
+    file = request.files['image']
+    f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
+    file.save(f)
+    print("subida exitosa")
+
+    return render_template('upload.html')
+
 
 if __name__ == '__main__':
     app.run()
