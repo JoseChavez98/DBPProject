@@ -37,10 +37,23 @@
 <body>
 <div class="container">
 <h1>Home Page</h1>
+<<<<<<< HEAD
+	<form action="/upload" method="post">
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Upload</button>
+=======
 	<form  action="/show" method="post">
 		<button value="Submit" type="submit">Upload</button>
+>>>>>>> 47d22416eec3cec2b22341ed0fef844e542e79a0
 	</form>
-<div class="row">
+	<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openSort(event, 'Hot')" id="defaultOpen">Hot</button>
+  <button class="tablinks" onclick="openSort(event, 'New')">New</button>
+</div>
+<!-- Tab content -->
+<div id="Hot" class="tabcontent">
+  <h3>Hot</h3>
+	<div class="row">
 <div class="col-md-12">
 <hr>
 	<div class="gal">
@@ -87,5 +100,73 @@
 </div>
 </div>
 </div>
+
+<div id="New" class="tabcontent">
+  <h3>New</h3>
+	<div class="row">
+<div class="col-md-12">
+<hr>
+	<div class="gal">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+	</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+	<div class="gal">
+		<img src="../static/shaker1.jpg" alt="Earthshaker1">
+		<img src="../static/shaker2.jpg" alt="Earthshaker2">
+		<img src="../static/szechuan.jpg" alt="Szechuan Sauce">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+	</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+	<div class="gal">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
+	</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+	<div class="gal">
+		<img src="../static/ed.jpg" alt="Earth Dragon">
+		<img src="../static/logo.png" alt="Logo">
+		<img src="../static/taikonator.jpg" alt="Taikonator">
+		<img src="../static/lala.jpg" alt="Lala">
+		<img src="../static/ricks.jpg" alt="Ricks">
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+function openSort(evt, sort) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(sort).style.display = "block";
+    evt.currentTarget.className += " active"
+}
+document.getElementById("defaultOpen").click();
+</script>
+
 </body>
 </html>
