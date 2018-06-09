@@ -8,7 +8,13 @@
     <title>Home Page</title>
 
 	<style>
-		img{width: 200px; height: 200px; padding: 7px 0;}
+
+
+		img{width: 224px; height: 200px; padding: 7px 0;}
+
+		.wrapper {
+			text-align: right;
+		}
 	</style>
     <!--style>.gal {
 
@@ -37,16 +43,16 @@
 <body>
 <div class="container">
 <h1>Home Page</h1>
-
-	<form  action="/show" method="post">
-		<button value="Submit" type="submit">Upload</button>
-
-	</form>
 	<!-- Tab links -->
-<div class="tab">
-  <button class="tablinks" onclick="openSort(event, 'Hot')" id="defaultOpen">Hot</button>
-  <button class="tablinks" onclick="openSort(event, 'New')">New</button>
-</div>
+	<form  action="/show" method="post">
+		<div class="wrapper">
+			<button value="Submit" type="submit">Upload</button>
+		</div>
+	</form>
+	<div class="tab">
+    	<button class="tablinks" onclick="openSort(event, 'Hot')" id="defaultOpen">Hot</button>
+  		<button class="tablinks" onclick="openSort(event, 'New')">New</button>
+	</div>
 <!-- Tab content -->
 <div id="Hot" class="tabcontent">
   <h3>Hot</h3>
