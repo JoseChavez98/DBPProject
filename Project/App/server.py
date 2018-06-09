@@ -25,7 +25,7 @@ engine = db.createEngine()
 
 @app.route('/')
 def hello_world():
-    return render_template('home.html')
+    return render_template('login.html')
 
 @app.route('/logout',methods=['POST'])
 def log_out():
@@ -54,6 +54,10 @@ def show_signup():
 @app.route('/showlogin',methods=['POST'])
 def show_login():
     return render_template('login.html')
+
+@app.route('/showhome',methods=['POST'])
+def show_home():
+    return render_template('home.html')
 ##############################################################################
 ################# USERS ######################################################
 ##############################################################################
@@ -71,22 +75,22 @@ def set_user():
     return 'Created users'
 
 
-#@app.route('/users', methods = ['GET'])
-#def get_users():
-#    key = 'getUsers'
-#    if key not in cache.keys():
- #       session = db.getSession(engine)
-  #     dbResponse = session.query(entities.User)
-   #     cache[key] = dbResponse;
-    #    print("From DB")
-    #else:
-     #   print("From Cache")
-#
- #   users = cache[key];
-  #  response = []
-   # for user in users:
-    #    response.append(user)
-    #return json.dumps(response, cls=connector.AlchemyEncoder)
+@app.route('/users', methods = ['GET'])
+def get_users():
+    key = 'getUsers'
+    if key not in cache.keys():
+        session = db.getSession(engine)
+        dbResponse = session.query(entities.User)
+        cache[key] = dbResponse;
+        print("From DB")
+    else:
+        print("From Cache")
+
+    users = cache[key];
+    response = []
+    for user in users:
+        response.append(user)
+    return json.dumps(response, cls=connector.AlchemyEncoder)
 
 #@app.route('/users/<id>', methods = ['GET'])
 #def get_user(id):
@@ -114,6 +118,7 @@ def set_user():
 @app.route('/users', methods = ['POST'])
 def create_user():
     c = json.loads(request.form['values'])
+    print("entre a users")
     print(c)
     user = entities.User(
         name=c['name'],
@@ -123,7 +128,8 @@ def create_user():
     session = db.getSession(engine)
     session.add(user)
     session.commit()
-    return 'Created users'
+    print("\nagregado exitosamente")
+    return render_template('login.html')
 
 #@app.route('/users', methods = ['PUT'])
 #def update_user():
