@@ -24,12 +24,13 @@ def allowed_file(filename):
 cache = {}
 engine = db.createEngine()
 
-
-@app.route('/upload', methods=['GET','POST'])
+@app.route('/show',methods=['POST'])
 def show():
     return render_template('upload.html')
+@app.route('/upload', methods=['GET','POST'])
 
 def upload_file():
+
     file = request.files['image']
     f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
     file.save(f)
