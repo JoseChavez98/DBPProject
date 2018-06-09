@@ -1,5 +1,4 @@
 from flask import Flask,render_template,session,request, jsonify, Response, url_for
-#from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
 import os
 from flask import Flask,flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
