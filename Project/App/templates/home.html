@@ -7,7 +7,10 @@
     <meta charset="UTF-8">
     <title>Home Page</title>
 
-    <style>.gal {
+	<style>
+		img{width: 200px; height: 200px; padding: 7px 0;}
+	</style>
+    <!--style>.gal {
 
 
 	-webkit-column-count: 5; /* Chrome, Safari, Opera */
@@ -29,16 +32,20 @@
 	}
 
 	}
-    </style>
+    </style-->
 </head>
 <body>
 <div class="container">
 <h1>Home Page</h1>
+	<form class="" action="" method="post">
+		<button class="" type="submit">Upload</button>
+	</form>
 <div class="row">
 <div class="col-md-12">
 <hr>
 	<div class="gal">
-		<img src="{{url_for('static', filename='ed.jpg')}}" alt="Earth Dragon">
+		<!--img src="{{url_for('static', filename='ed.jpg')}}" alt="Earth Dragon"-->
+		<img src="../static/ed.jpg" alt="Earth Dragon">
 		<img src="../static/logo.png" alt="Logo">
 		<img src="../static/taikonator.jpg" alt="Taikonator">
 		<img src="../static/lala.jpg" alt="Lala">
@@ -49,7 +56,7 @@
 <div class="row">
 <div class="col-md-12">
 	<div class="gal">
-		<img src="../static/ed.jpg" alt="Earthshaker1">
+		<img src="../static/shaker1.jpg" alt="Earthshaker1">
 		<img src="../static/shaker2.jpg" alt="Earthshaker2">
 		<img src="../static/szechuan.jpg" alt="Szechuan Sauce">
 		<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
