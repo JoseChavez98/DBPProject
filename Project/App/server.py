@@ -1,4 +1,8 @@
 from flask import Flask,render_template,session,request, jsonify, Response, url_for
+#from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
+import os
+from flask import Flask,flash, request, redirect, url_for
+from werkzeug.utils import secure_filename
 from model import entities
 from database import connector
 import json
@@ -7,22 +11,34 @@ import json
 app = Flask(__name__)
 db = connector.Manager()
 
+UPLOAD_FOLDER = '/static'
+ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg', 'gif'])
+
+#photos = UploadSet('photos', IMAGES)
+app.config['UPLOADED_FOLDER'] = 'static/'
+#configure_uploads(app, photos)
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 cache = {}
 engine = db.createEngine()
+@app.route('/upload', methods=['GET','POST'])
+
+def upload_file():
+    file = request.files['image']
+    f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
+    file.save(f)
+
+    return render_template('upload.html')
 
 
-@app.route('/images/<content>')
-def images(content):
-    return render_template(content)
 
-#@app.route('/static/<content>')
-#def static_content(content):
-#    return render_template(content)
 
 
 @app.route('/')
 def hello_world():
-    return render_template('login.html')
+    return render_template('upload.html')
 
 @app.route('/dologin',  methods = ['POST'])
 def do_login():
