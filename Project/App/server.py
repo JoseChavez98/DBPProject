@@ -191,7 +191,8 @@ def upload_file():
     file = request.files['image']
     f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
     print(file.filename)
-    im = entities.Image.path.info
+    im = entities.Image()
+    im.path = file.filename
     session1 = db.getSession(engine)
     session1.add(im)
     session1.commit()
@@ -199,6 +200,18 @@ def upload_file():
     print("subida exitosa")
 
     return render_template('upload.html')
+
+
+@app.route('/images', methods = ['GET'])
+def get_images():
+
+    session = db.getSession(engine)
+    images = session.query(entities.Image)
+
+    response = []
+    for image in images:
+        response.append(image)
+    return json.dumps(response, cls=connector.AlchemyEncoder)
 
 
 if __name__ == '__main__':

@@ -223,6 +223,18 @@ function openSort(evt, sort) {
     evt.currentTarget.className += " active"
 }
 document.getElementById("defaultOpen").click();
+
+$.getJSON( "/images", function( data ) {
+  var items = [];
+  $.each( data, function( key, val ) {
+    items.push( "<img src='../static/" + data[0]['path'] + "'>");
+  });
+
+  $( "<ul/>", {
+    "class": "my-new-list",
+    html: items.join( "" )
+  }).appendTo( "body" );
+});
 </script>
 
 </body>

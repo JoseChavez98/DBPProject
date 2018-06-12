@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Sequence
 from database import connector
 
 class User(connector.Manager.Base):
@@ -7,9 +7,12 @@ class User(connector.Manager.Base):
     name = Column(String(50),primary_key=True)
     email = Column(String(50))
     password = Column(String(12))
+
+
 class Image(connector.Manager.Base):
     __tablename__= 'images'
-    path = Column(String(50),primary_key=True)
+    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
+    path = Column(String(50))
 
 
 
