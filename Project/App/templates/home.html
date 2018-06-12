@@ -1,67 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
     <meta charset="UTF-8">
     <title>Home Page</title>
-
-	<style>
-
-
-		img {
-			width: 224px;
-			height: 224px;
-			padding: 7px 0;
-			border: 1px solid #ddd; /* Gray border */
-    		border-radius: 4px; /* Rounded border */
-		}
-
-		/* Add a hover effect (blue shadow) */
-		img:hover {
-   			box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-		}
-
-		.wrapper {
-			text-align: right;
-		}
-	</style>
-    <!--style>.gal {
-
-
-	-webkit-column-count: 5; /* Chrome, Safari, Opera */
-    -moz-column-count: 5; /* Firefox */
-    column-count: 5;
-
-
-	}
-	.gal img{ width: 250px; height: 250px; padding: 7px 0;}  {
-
-		.gal {
-
-
-	-webkit-column-count: 1; /* Chrome, Safari, Opera */
-    -moz-column-count: 1; /* Firefox */
-    column-count: 1;
-
-
-	}
-
-	}
-    </style-->
 </head>
 <body>
 <div class="container">
 	<form  action="/logout" method="post">
-		<div class="wrapper">
+		<div class="wrapp">
 			<button value="Submit" type="submit">Logout</button>
 		</div>
 	</form>
 <h1>Home Page</h1>
 	<!-- Tab links -->
 	<form  action="/showupload" method="post">
-		<div class="wrapper">
+		<div class="wrapp">
 			<button value="Submit" type="submit" style="font-size: 30px">Upload</button>
 		</div>
 	</form>
