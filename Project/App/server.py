@@ -115,6 +115,27 @@ def get_users():
 #    return "DELETED"
 
 
+@app.route('/register', methods = ['POST'])
+def register():
+    user = entities.User(
+        name=request.form['username'],
+        email=request.form['email'],
+        password=request.form['password']
+    )
+    session = db.getSession(engine)
+    users = session.query(entities.User).filter(entities.User.name)
+    emails = session.query(entities.User).filter(entities.User.email)
+    if user.name not in users and user.email not in emails:
+        print("entre al if")
+        session.add(user)
+        session.commit()
+        print("\nagregado exitosamente")
+        return render_template('login.html')
+    else:
+        print("no entre")
+        return render_template('register.html')
+
+
 @app.route('/users', methods = ['POST'])
 def create_user():
     c = json.loads(request.form['values'])
@@ -125,12 +146,19 @@ def create_user():
         email=c['fullname'],
         password=c['password']
     )
-    session = db.getSession(engine)
-    session.add(user)
-    session.commit()
-    print("\nagregado exitosamente")
-    return render_template('login.html')
 
+    session = db.getSession(engine)
+    users = session.query(entities.User).filter(entities.User.name)
+    emails = session.query(entities.User).filter(entities.User.email)
+    if user.name not in users :
+        print("entre al if")
+        session.add(user)
+        session.commit()
+        print("\nagregado exitosamente")
+        return render_template('login.html')
+    else:
+        print("no entre")
+        return render_template('register.html')
 #@app.route('/users', methods = ['PUT'])
 #def update_user():
 #    session = db.getSession(engine)
@@ -156,12 +184,17 @@ def allowed_file(filename):
 @app.route('/showupload',methods=['POST'])
 def show():
     return render_template('upload.html')
-@app.route('/upload', methods=['GET','POST'])
 
+@app.route('/upload', methods=['GET','POST'])
 def upload_file():
 
     file = request.files['image']
     f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
+    print(file.filename)
+    im = entities.Image.path.info
+    session1 = db.getSession(engine)
+    session1.add(im)
+    session1.commit()
     file.save(f)
     print("subida exitosa")
 

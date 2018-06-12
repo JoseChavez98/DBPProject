@@ -7,6 +7,10 @@ class User(connector.Manager.Base):
     name = Column(String(50),primary_key=True)
     email = Column(String(50))
     password = Column(String(12))
+class Image(connector.Manager.Base):
+    __tablename__= 'images'
+    path = Column(String(50),primary_key=True)
+
 
 
 
