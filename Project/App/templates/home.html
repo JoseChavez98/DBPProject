@@ -139,7 +139,7 @@ document.getElementById("defaultOpen").click();
 $.getJSON( "/images", function( data ) {
   var items = [];
   $.each( data, function( key, val ) {
-    items.push( "<div class='gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-3 filter hdpe'><a target='_blank' href='../static/" + data[key]['path'] + "'><img src='../static/" + data[key]['path'] + "'></a></div>");
+    items.push( "<div class='gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-3 filter hdpe'><a target='_blank' href='../static/" + data[data.length-(key+1)]['path'] + "'><img src='../static/" + data[key]['path'] + "'></a></div>");
   });
 
   $( "<ul/>", {
