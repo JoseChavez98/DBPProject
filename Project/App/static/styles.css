@@ -1,4 +1,4 @@
-.gal.img {
+img {
 			width: 224px;
 			height: 224px;
 			padding: 7px 0;
@@ -27,7 +27,6 @@
 
 body, html{
 	height: 100%;
- 	background-repeat: no-repeat;
  	background-color: #d3d3d3;
  	font-family: 'Oxygen', sans-serif;
 }

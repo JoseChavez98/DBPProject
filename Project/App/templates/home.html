@@ -31,92 +31,19 @@
 <div id="Hot" class="tabcontent">
   <h3>Hot</h3>
 	<div class="row">
-<div class="col-md-12">
-<hr>
-		<a target="_blank" href="../static/ed.jpg">
-			<img src="../static/ed.jpg" alt="Earth Dragon">
-		</a>
-		<a target="_blank" href="../static/logo.png">
-			<img src="../static/logo.png" alt="Logo">
-		</a>
-		<a target="_blank" href="../static/taikonator.jpg">
-			<img src="../static/taikonator.jpg" alt="Taikonator">
-		</a>
-		<a target="_blank" href="../static/lala.jpg">
-			<img src="../static/lala.jpg" alt="Lala">
-		</a>
-		<a target="_blank" href="../static/ricks.jpg">
-			<img src="../static/ricks.jpg" alt="Ricks">
-		</a>
-</div>
-</div>
-<div class="row">
-<div class="col-md-12">
-		<a target="_blank" href="../static/shaker1.jpg">
-			<img src="../static/shaker1.jpg" alt="Earthshaker1">
-		</a>
-		<a target="_blank" href="../static/shaker2.jpg">
-			<img src="../static/shaker2.jpg" alt="Earthshaker2">
-		</a>
-		<a target="_blank" href="../static/szechuan.jpg">
-			<img src="../static/szechuan.jpg" alt="Szechuan Sauce">
-		</a>
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-</div>
-</div>
-<div class="row">
-<div class="col-md-12">
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-</div>
-</div>
-<div class="row">
-<div class="col-md-12">
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-		<a target="_blank" href="https://preview.ibb.co/i0PmHk/1.jpg">
-			<img src="https://preview.ibb.co/i0PmHk/1.jpg" alt="">
-		</a>
-</div>
-</div>
+		<div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="hot"></div>
+		</div>
+	</div>
 </div>
 
 <div id="New" class="tabcontent">
   <h3>New</h3>
-	<hr>
-<div class="row">
-<div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	<div class="gal"></div>
-</div>
-</div>
+	<div class="row">
+		<div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="new"></div>
+		</div>
+	</div>
 </div>
 </div>
 
@@ -139,14 +66,27 @@ document.getElementById("defaultOpen").click();
 $.getJSON( "/images", function( data ) {
   var items = [];
   $.each( data, function( key, val ) {
-    items.push( "<div class='gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-3 filter hdpe'><a target='_blank' href='../static/" + data[data.length-(key+1)]['path'] + "'><img src='../static/" + data[key]['path'] + "'></a></div>");
+    items.push( "<div class='gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-3'><a target='_blank' href='../static/" + data[data.length-(key+1)]['path'] + "'><img src='../static/" + data[data.length-(key+1)]['path'] + "'></a></div>");
   });
 
   $( "<ul/>", {
     "class": "my-new-list",
     html: items.join( "" )
-  }).appendTo( ".gal" );
+  }).appendTo( ".new" );
 });
+
+$.getJSON( "/images", function( data ) {
+  var items = [];
+  $.each( data, function( key, val ) {
+    items.push( "<div class='gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-3'><a target='_blank' href='../static/" + data[key]['path'] + "'><img src='../static/" + data[key]['path'] + "'></a></div>");
+  });
+
+  $( "<ul/>", {
+    "class": "my-new-list",
+    html: items.join( "" )
+  }).appendTo( ".hot" );
+});
+
 </script>
 
 </body>
