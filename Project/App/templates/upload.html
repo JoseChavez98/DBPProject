@@ -4,24 +4,28 @@
   <meta charset="UTF-8">
   <title>Sightengine demo - Python and Flask</title>
   <link rel="stylesheet" type="text/css" href="../static/styles.css">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
+<div class="container">
 <header class="navbar">
   <form action="/upload" method="post" enctype="multipart/form-data" >
-      <span class="btn btn-default btn-file">
-        Browse <input type="file" name="image">
+      <h1>Upload your Image</h1>
+      <br>
+      <span class="btn btn-default btn-file"><input type="file" name="image">
       </span>
 
-    <input type="submit" value="Upload your image" class="btn btn-primary">
+    <input type="submit" value="Upload" class="btn btn-primary">
   </form>
-
   <br>
-  <span class="navbar-text">no suban Nopor  </span>
+  <span class="navbar-text"></span>
   <form action="/showhome" method="post">
-    <button>Home</button>
+    <button class="btn btn-primary">Home</button>
   </form>
 </header>
-
+</div>
 </body>
 </html>
