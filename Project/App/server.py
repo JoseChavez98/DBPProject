@@ -1,6 +1,7 @@
-from flask import Flask,render_template,session,request, jsonify, Response, url_for
+from flask import Flask,render_template,session,request, jsonify, Response
 import os
 from flask import Flask,flash, request, redirect, url_for
+from sqlalchemy import or_, and_
 from model import entities
 from database import connector
 import json
@@ -58,6 +59,22 @@ def show_login():
 @app.route('/showhome',methods=['POST'])
 def show_home():
     return render_template('home.html')
+
+@app.route('/mobile_login', methods = ['POST'])
+def mobile_login():
+    obj = request.get_json(silent=True)
+    print(obj)
+    username = obj['username']
+    password = obj['password']
+    sessiondb = db.getSession(engine)
+    user = sessiondb.query(entities.User).filter(
+        and_(entities.User.name == username, entities.User.password == password )
+    ).first()
+    if user != None:
+        #session['logged'] = user.id;
+        return Response(json.dumps({'response': True}, cls=connector.AlchemyEncoder), mimetype='application/json')
+    else:
+        return Response(json.dumps({'response': False}, cls=connector.AlchemyEncoder), mimetype='application/json')
 ##############################################################################
 ################# USERS ######################################################
 ##############################################################################
