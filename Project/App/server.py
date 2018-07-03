@@ -11,7 +11,7 @@ app = Flask(__name__)
 db = connector.Manager()
 
 UPLOAD_FOLDER = '/static'
-ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg', 'gif'])
+extensions=[ 'png', 'jpg', 'jpeg', 'gif']
 
 app.config['UPLOADED_FOLDER'] = 'static/'
 
@@ -157,9 +157,7 @@ def create_user():
 ################## UPLOAD IMAGES #############################################
 #############################################################################
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @app.route('/showupload',methods=['POST'])
 def show():
     return render_template('upload.html')
@@ -169,18 +167,21 @@ def show():
 def upload_file():
 
     file = request.files['image']
-    f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
-    im = entities.Image()
-    im.path = file.filename
+    cast=file.filename.split('.')
+    if(cast[1] in extensions):
+        f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
+        im = entities.Image()
+        im.path = file.filename
 
-    im.likes = 0
-    session1 = db.getSession(engine)
-    session1.add(im)
-    session1.commit()
-    file.save(f)
+        im.likes = 0
+        session1 = db.getSession(engine)
+        session1.add(im)
+        session1.commit()
+        file.save(f)
 
-    return render_template('upload.html')
-
+        return render_template('upload.html')
+    else:
+        return render_template('upload.html')
 
 @app.route('/images', methods = ['GET'])
 def get_images():
