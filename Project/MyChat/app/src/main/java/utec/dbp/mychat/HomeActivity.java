@@ -15,9 +15,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ChatActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
     public static final String EXTRA_USER_ID = "userID";
-    public static final String TAG = "ChatActivity";
+    public static final String TAG = "HomeActivity";
 
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
@@ -29,8 +29,8 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
-        mRecyclerView = findViewById(R.id.main_recycler_view);
+        setContentView(R.layout.activity_home);
+        //mRecyclerView = findViewById(R.id.main_recycler_view);
     }
 
     @Override

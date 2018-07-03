@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     if (response.getBoolean("response")) {
-                        Intent intent = new Intent(getActivity(), ChatActivity.class);
+                        Intent intent = new Intent(getActivity(), HomeActivity.class);
                         startActivity(intent);
                     } else {
                         showMessage("Wrong username or password");
