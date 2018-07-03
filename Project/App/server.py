@@ -1,6 +1,7 @@
-from flask import Flask,render_template,session,request, jsonify, Response, url_for
+from flask import Flask,render_template,session,request, jsonify, Response
 import os
 from flask import Flask,flash, request, redirect, url_for
+from sqlalchemy import or_, and_
 from model import entities
 from database import connector
 import json
@@ -10,7 +11,7 @@ app = Flask(__name__)
 db = connector.Manager()
 
 UPLOAD_FOLDER = '/static'
-ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg', 'gif'])
+extensions=[ 'png', 'jpg', 'jpeg', 'gif']
 
 app.config['UPLOADED_FOLDER'] = 'static/'
 
@@ -58,6 +59,21 @@ def show_login():
 @app.route('/showhome',methods=['POST'])
 def show_home():
     return render_template('home.html')
+
+@app.route('/mobile_login', methods = ['POST'])
+def mobile_login():
+    obj = request.get_json(silent=True)
+    print(obj)
+    username = obj['username']
+    password = obj['password']
+    sessiondb = db.getSession(engine)
+    user = sessiondb.query(entities.User).filter(
+        and_(entities.User.name == username, entities.User.password == password )
+    ).first()
+    if user != None:
+        return Response(json.dumps({'response': True}, cls=connector.AlchemyEncoder), mimetype='application/json')
+    else:
+        return Response(json.dumps({'response': False}, cls=connector.AlchemyEncoder), mimetype='application/json')
 ##############################################################################
 ################# USERS ######################################################
 ##############################################################################
@@ -140,9 +156,7 @@ def create_user():
 ################## UPLOAD IMAGES #############################################
 #############################################################################
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @app.route('/showupload',methods=['POST'])
 def show():
     return render_template('upload.html')
@@ -152,6 +166,7 @@ def show():
 def upload_file():
 
     file = request.files['image']
+<<<<<<< HEAD
     f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
     im = entities.Image()
     im.path = file.filename
@@ -164,6 +179,23 @@ def upload_file():
 
     return render_template('upload.html')
 
+=======
+    cast=file.filename.split('.')
+    if(cast[1] in extensions):
+        f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
+        im = entities.Image()
+        im.path = file.filename
+
+        im.likes = 0
+        session1 = db.getSession(engine)
+        session1.add(im)
+        session1.commit()
+        file.save(f)
+
+        return render_template('upload.html')
+    else:
+        return render_template('upload.html')
+>>>>>>> ac795132a8126e96adaa588953fe79adae5709ac
 
 @app.route('/images', methods = ['GET'])
 def get_images():
