@@ -71,7 +71,6 @@ def mobile_login():
         and_(entities.User.name == username, entities.User.password == password )
     ).first()
     if user != None:
-        #session['logged'] = user.id;
         return Response(json.dumps({'response': True}, cls=connector.AlchemyEncoder), mimetype='application/json')
     else:
         return Response(json.dumps({'response': False}, cls=connector.AlchemyEncoder), mimetype='application/json')

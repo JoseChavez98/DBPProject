@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (response.getBoolean("response")) {
                         Intent intent = new Intent(getActivity(), ChatActivity.class);
-                        intent.putExtra(ChatActivity.EXTRA_USER_ID, response.getInt("id"));
                         startActivity(intent);
                     } else {
                         showMessage("Wrong username or password");
