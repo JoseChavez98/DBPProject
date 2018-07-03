@@ -155,8 +155,8 @@ def upload_file():
     f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
     im = entities.Image()
     im.path = file.filename
-
     im.likes = 0
+    im.user ="None"
     session1 = db.getSession(engine)
     session1.add(im)
     session1.commit()

@@ -12,8 +12,8 @@ class Image(connector.Manager.Base):
     __tablename__= 'images'
     id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
     path = Column(String(50))
-
     likes = Column(Integer)
+    user=Column(String(50))
 
 
 
