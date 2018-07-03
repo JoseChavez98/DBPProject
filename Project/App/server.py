@@ -166,7 +166,7 @@ def show():
 def upload_file():
 
     file = request.files['image']
-<<<<<<< HEAD
+
     f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
     im = entities.Image()
     im.path = file.filename
@@ -179,7 +179,7 @@ def upload_file():
 
     return render_template('upload.html')
 
-=======
+
     cast=file.filename.split('.')
     if(cast[1] in extensions):
         f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
@@ -195,7 +195,7 @@ def upload_file():
         return render_template('upload.html')
     else:
         return render_template('upload.html')
->>>>>>> ac795132a8126e96adaa588953fe79adae5709ac
+
 
 @app.route('/images', methods = ['GET'])
 def get_images():
