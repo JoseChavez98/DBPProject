@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyChat</string>
+    <color name="blue">#4b7ac6</color>
+    <string name="title_activity_upload">Upload</string>
+</resources>

@@ -4,12 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="utec.dbp.mychat.HomeActivity">
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
-    </android.support.v7.widget.RecyclerView>
-
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Upload"
+    tools:showIn="@layout/activity_upload">
 
 </android.support.constraint.ConstraintLayout>

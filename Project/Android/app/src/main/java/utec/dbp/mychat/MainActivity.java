@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText txtUsername = (EditText) findViewById(R.id.txtUsername);
         EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
 
-        String url = "http://10.0.2.2:5000/mobile_login";
+        String url = "http://18.222.144.174:8080/mobile_login";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap();
