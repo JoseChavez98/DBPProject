@@ -166,26 +166,6 @@ def show():
 def upload_file():
 
     file = request.files['image']
-<<<<<<< HEAD
-
-=======
->>>>>>> 7ce0847995c5210fabac2e07ce291ded9c3ca31e
-    f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
-    im = entities.Image()
-    im.path = file.filename
-    im.likes = 0
-    im.user ="None"
-    session1 = db.getSession(engine)
-    session1.add(im)
-    session1.commit()
-    file.save(f)
-
-    return render_template('upload.html')
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 7ce0847995c5210fabac2e07ce291ded9c3ca31e
     cast=file.filename.split('.')
     if(cast[1] in extensions):
         f= os.path.join(app.config['UPLOADED_FOLDER'], file.filename)
@@ -201,10 +181,6 @@ def upload_file():
         return render_template('upload.html')
     else:
         return render_template('upload.html')
-<<<<<<< HEAD
-
-=======
->>>>>>> 7ce0847995c5210fabac2e07ce291ded9c3ca31e
 
 @app.route('/images', methods = ['GET'])
 def get_images():
